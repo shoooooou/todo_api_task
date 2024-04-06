@@ -1,10 +1,12 @@
 package springchatapp.demo.model.resource;
 
 import lombok.Builder;
+import lombok.Getter;
 
 @Builder
-public class TaskListResource {
+@Getter
+public class TaskResource {
 
     public String taskName;
-    public int uid;
+    public String uid;
 }

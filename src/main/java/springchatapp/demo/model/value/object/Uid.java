@@ -10,13 +10,13 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Uid {
-    private int uid;
+    private String uid;
 
-    public static Uid noValidateOf(int uid) {
-        return Objects.isNull(uid) ? new Uid(0) : new Uid(uid);
+    public static Uid noValidateOf(String uid) {
+        return Objects.isNull(uid) ? new Uid("") : new Uid(uid);
     }
 
-    public int getValue() {
+    public String getValue() {
         return this.uid;
     }
 }
