@@ -20,14 +20,14 @@ public class UserController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/todo/tasklist")
-    private ResponseEntity<?> getTaskList() {
+    @GetMapping("/todo/tasklist/{uid}")
+    private ResponseEntity<?> getTaskList(@PathVariable String uid) {
 
-        Optional<List<TaskEntity>> optionalTaskEntities = taskService.getTaskList("0000000001");
+        Optional<List<TaskEntity>> optionalTaskEntities = taskService.getTaskList(uid);
 
         // タスクがない場合は早期リターン
         if (optionalTaskEntities.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().body(null);
         }
 
         List<TaskResource> taskListEntityList = new ArrayList<>();
