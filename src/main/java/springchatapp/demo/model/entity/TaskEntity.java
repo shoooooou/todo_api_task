@@ -2,8 +2,8 @@ package springchatapp.demo.model.entity;
 
 import lombok.Builder;
 import lombok.Getter;
-import springchatapp.demo.model.vo.TaskName;
-import springchatapp.demo.model.vo.Uid;
+import springchatapp.demo.model.value.object.TaskName;
+import springchatapp.demo.model.value.object.Uid;
 
 @Builder
 @Getter

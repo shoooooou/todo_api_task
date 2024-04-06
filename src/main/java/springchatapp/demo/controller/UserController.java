@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import springchatapp.demo.model.entity.TaskEntity;
 import springchatapp.demo.model.resource.TaskListResource;
-import springchatapp.demo.model.vo.TaskName;
-import springchatapp.demo.model.vo.Uid;
+import springchatapp.demo.model.value.object.TaskName;
+import springchatapp.demo.model.value.object.Uid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 public class UserController {
     @GetMapping("/todo/tasklist")
-    private ResponseEntity<List<TaskListResource>> getTaskList() {
+    private ResponseEntity<?> getTaskList() {
 
         List<TaskEntity> taskListEntityList = getTaskListEntityList();
         List<TaskListResource> taskListResourceList = new ArrayList<TaskListResource>();
@@ -35,12 +35,9 @@ public class UserController {
     private List<TaskEntity> getTaskListEntityList() {
         Uid uid1 = new Uid();
         uid1.setUid(1);
-        TaskName taskName1 = new TaskName();
-        taskName1.setTaskName("task1");
-        Uid uid2 = new Uid();
-        uid2.setUid(2);
-        TaskName taskName2 = new TaskName();
-        taskName2.setTaskName("task2");
+        TaskName taskName1 = new TaskName("task1");
+        Uid uid2 = new Uid(2);
+        TaskName taskName2 = new TaskName("task2");
         TaskEntity taskEntity1 = TaskEntity.builder().uid(uid1).taskName(taskName1).build();
         TaskEntity taskEntity2 = TaskEntity.builder().uid(uid2).taskName(taskName2).build();
         List<TaskEntity> taskEntityList = new ArrayList<TaskEntity>();
