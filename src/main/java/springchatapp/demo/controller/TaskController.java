@@ -19,7 +19,6 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping("/todo/tasklist/{uid}")
-    @CrossOrigin(origins = {"http://localhost:3000"})
     private ResponseEntity<?> getTaskList(@PathVariable String uid) {
         Optional<List<TaskEntity>> optionalTaskEntities = taskService.getTaskList(uid);
 
@@ -36,6 +35,7 @@ public class TaskController {
         return ResponseEntity.ok().body(taskListEntityList);
     }
 
+    // TODO: 実装の肉付けをしたい
     @PostMapping("/todo/tasklist/{uid}")
     private ResponseEntity<?> addTask(@PathVariable int uid, @RequestBody TaskRequestResource taskRequestResource) {
 
