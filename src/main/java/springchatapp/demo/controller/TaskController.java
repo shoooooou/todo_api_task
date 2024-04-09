@@ -1,12 +1,10 @@
 package springchatapp.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springchatapp.demo.model.entity.TaskEntity;
+import springchatapp.demo.model.resource.TaskRequestResource;
 import springchatapp.demo.model.resource.TaskResource;
 import springchatapp.demo.model.resource.TaskResourceFactory;
 import springchatapp.demo.service.TaskService;
@@ -16,13 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class UserController {
-    @Autowired
-    private TaskService taskService;
+@RequiredArgsConstructor
+public class TaskController {
+    private final TaskService taskService;
 
     @GetMapping("/todo/tasklist/{uid}")
+    @CrossOrigin(origins = {"http://localhost:3000"})
     private ResponseEntity<?> getTaskList(@PathVariable String uid) {
-
         Optional<List<TaskEntity>> optionalTaskEntities = taskService.getTaskList(uid);
 
         // タスクがない場合は早期リターン
@@ -38,8 +36,9 @@ public class UserController {
         return ResponseEntity.ok().body(taskListEntityList);
     }
 
-    @PostMapping("/todo/tasklist")
-    private ResponseEntity<String> addTaskList(@PathVariable int uid) {
+    @PostMapping("/todo/tasklist/{uid}")
+    private ResponseEntity<?> addTask(@PathVariable int uid, @RequestBody TaskRequestResource taskRequestResource) {
+
         return ResponseEntity.ok("User Info");
     }
 
