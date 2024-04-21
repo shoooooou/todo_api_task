@@ -7,6 +7,7 @@ import springchatapp.demo.model.value.object.TaskName;
 public class TaskEntityFactory {
     public static TaskEntity create(TaskResource taskResource) {
         return TaskEntity.builder()
+                .sequenceNo(taskResource.getSequenceNo())
                 .taskName(TaskName.noValidateOf(taskResource.getTaskName()))
                 .statusCd(StatusCd.noValidateOf(taskResource.getStatusCd()))
                 .build();

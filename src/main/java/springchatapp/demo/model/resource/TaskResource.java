@@ -6,7 +6,7 @@ import lombok.Getter;
 @Builder
 @Getter
 public class TaskResource {
-
+    public int sequenceNo;
     public String taskName;
     public String statusCd;
 }

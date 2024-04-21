@@ -8,6 +8,7 @@ import springchatapp.demo.model.value.object.TaskName;
 @Builder
 @Getter
 public class TaskEntity {
+    private int sequenceNo;
     private StatusCd statusCd;
     private TaskName taskName;
 }
