@@ -4,6 +4,6 @@
 
     <!-- Uidから取得 -->
     <select id="selectByUid" resultType="springchatapp.demo.model.resource.TaskResource">
-        select * from task where uid = #{uid};
+        select task_name,status_cd from task where uid = #{uid};
     </select>
 </mapper>
