@@ -5,7 +5,7 @@ import springchatapp.demo.model.entity.TaskEntity;
 public class TaskResourceFactory {
     public static TaskResource create(TaskEntity taskEntity) {
         return TaskResource.builder()
-                .uid(taskEntity.getUid().getValue())
+                .statusCd(taskEntity.getStatusCd().getValue())
                 .taskName(taskEntity.getTaskName().getValue())
                 .build();
     }

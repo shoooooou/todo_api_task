@@ -8,5 +8,5 @@ import lombok.Getter;
 public class TaskResource {
 
     public String taskName;
-    public String uid;
+    public String statusCd;
 }
