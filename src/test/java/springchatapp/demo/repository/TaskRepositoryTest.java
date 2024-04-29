@@ -38,26 +38,21 @@ public class TaskRepositoryTest {
         List<TaskResource> target = taskRepository.getTaskList("0000000001");
 
         Assertions.assertEquals(expected.size(), target.size());
-//        for文使わずに比較をしたい
-        for (int i = 0; i < expected.size(); i++) {
-            Assertions.assertEquals(expected.get(i).getTaskName(), target.get(i).getTaskName());
-            Assertions.assertEquals(expected.get(i).getStatusCd(), target.get(i).getStatusCd());
-        }
+        Assertions.assertEquals(expected, target);
     }
 
     @Test
-    @DatabaseSetup("/getTaskListSetup.xml")
     @DisplayName("データベースアクセスエラーの場合は例外をスローする")
     void getTaskList_error1() {
         List<TaskResource> target = taskRepository.getTaskList("0000000001");
-        
+
     }
 
     private List<TaskResource> getExpectedTaskList() {
         List<TaskResource> taskList = new ArrayList<>();
-        taskList.add(TaskResource.builder().taskName("todo1").statusCd("0").build());
-        taskList.add(TaskResource.builder().taskName("todo2").statusCd("1").build());
-        taskList.add(TaskResource.builder().taskName("todo3").statusCd("2").build());
+        taskList.add(TaskResource.builder().sequenceNo(1234).taskName("todo1").statusCd("0").build());
+        taskList.add(TaskResource.builder().sequenceNo(5678).taskName("todo2").statusCd("1").build());
+        taskList.add(TaskResource.builder().sequenceNo(9876).taskName("todo3").statusCd("2").build());
         return taskList;
     }
 }
