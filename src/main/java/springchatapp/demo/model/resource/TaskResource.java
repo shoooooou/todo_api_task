@@ -1,14 +1,12 @@
 package springchatapp.demo.model.resource;
 
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 
 @Builder
-@Getter
-@EqualsAndHashCode
+@Data
 public class TaskResource {
-    public String taskName;
-    public String statusCd;
+    private String taskName;
+    private String statusCd;
     private int sequenceNo;
 }
