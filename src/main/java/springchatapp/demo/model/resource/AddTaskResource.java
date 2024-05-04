@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Builder
 @Data
-public class TaskResource {
+public class AddTaskResource {
+  private String uid;
   private String taskName;
   private String statusCd;
   private int sequenceNo;

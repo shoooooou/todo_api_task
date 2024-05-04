@@ -6,4 +6,10 @@
     <select id="selectByUid" resultType="springchatapp.demo.model.resource.TaskResource">
         select sequence_no,task_name,status_cd from task where uid = #{uid};
     </select>
+
+    <!-- タスクを登録 -->
+    <insert id="insertTask" parameterType="springchatapp.demo.model.resource.AddTaskResource">
+        insert into task (uid,task_name,status_cd)
+        values (#{uid},#{taskName},#{statusCd})
+    </insert>
 </mapper>
