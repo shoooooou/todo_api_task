@@ -46,7 +46,6 @@ public class TaskController {
     return ResponseEntity.ok().body(taskListEntityList);
   }
 
-  // TODO: 実装の肉付けをしたい
 
   /**
    * ユーザのタスクを登録する。
