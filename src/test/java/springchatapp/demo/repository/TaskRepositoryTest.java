@@ -95,7 +95,7 @@ public class TaskRepositoryTest {
     Assertions.assertEquals("ERROR", captorLoggingEvent.getValue().getLevel().toString());
   }
 
-  //  TODO: テーブルの中身が空の場合しか機能しないので解消したい
+  // TODO: テーブルの中身が空の場合しか機能しないので解消したい
   @Test
   @Transactional
   @Rollback
