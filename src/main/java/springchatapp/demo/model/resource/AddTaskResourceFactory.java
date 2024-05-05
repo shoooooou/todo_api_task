@@ -6,8 +6,8 @@ public class AddTaskResourceFactory {
   public static AddTaskResource create(AddTaskEntity AddtaskEntity) {
 
     return AddTaskResource.builder()
-        .uid(AddtaskEntity.getUid())
         .sequenceNo(AddtaskEntity.getSequenceNo())
+        .uid(AddtaskEntity.getUid().getValue())
         .statusCd(AddtaskEntity.getStatusCd().getValue())
         .taskName(AddtaskEntity.getTaskName().getValue())
         .build();

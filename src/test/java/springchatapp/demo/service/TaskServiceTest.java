@@ -14,9 +14,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import springchatapp.demo.model.entity.AddTaskEntityFactory;
 import springchatapp.demo.model.entity.TaskEntity;
 import springchatapp.demo.model.entity.TaskEntityFactory;
-import springchatapp.demo.model.resource.AddTaskResource;
+import springchatapp.demo.model.resource.AddTaskRequestResource;
+import springchatapp.demo.model.resource.AddTaskResourceFactory;
 import springchatapp.demo.model.resource.TaskResource;
 import springchatapp.demo.repository.TaskRepository;
 
@@ -65,14 +67,20 @@ public class TaskServiceTest {
   @Test
   @DisplayName("タスクの登録ができる")
   void addTask_ok1() {
-    final AddTaskResource addTaskResource = AddTaskResource.builder()
-        .uid("00000000000000000001")
-        .taskName("task1")
-        .statusCd("1")
-        .build();
+    final var sequenceNo = 1;
+    final var uid = "00000000000000000001";
+    final var taskName = "task1";
+    final var statusCd = "1";
+    final var addTaskRequestResource =
+        AddTaskRequestResource.builder().sequenceNo(sequenceNo).taskName(taskName)
+            .statusCd(statusCd).build();
+
+    final var addTaskEntity = AddTaskEntityFactory.create(uid, addTaskRequestResource);
+    final var addTaskResource = AddTaskResourceFactory.create(addTaskEntity);
+
     when(taskRepository.addTask(addTaskResource)).thenReturn(1);
 
-    var result = target.addTask(addTaskResource);
+    var result = target.addTask(addTaskEntity);
 
     Assertions.assertEquals(1, result);
     verify(taskRepository).addTask(addTaskResource);

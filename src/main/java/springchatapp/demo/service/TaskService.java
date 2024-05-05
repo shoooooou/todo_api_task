@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import springchatapp.demo.model.entity.AddTaskEntity;
 import springchatapp.demo.model.entity.TaskEntity;
 import springchatapp.demo.model.entity.TaskEntityFactory;
-import springchatapp.demo.model.resource.AddTaskResource;
+import springchatapp.demo.model.resource.AddTaskResourceFactory;
 import springchatapp.demo.model.resource.TaskResource;
 import springchatapp.demo.repository.TaskRepository;
 
@@ -32,7 +33,8 @@ public class TaskService {
     return Optional.of(listTaskEntity);
   }
 
-  public int addTask(AddTaskResource addTaskResource) {
-    return taskRepository.addTask(addTaskResource);
+  public int addTask(AddTaskEntity addTaskEntity) {
+
+    return taskRepository.addTask(AddTaskResourceFactory.create(addTaskEntity));
   }
 }

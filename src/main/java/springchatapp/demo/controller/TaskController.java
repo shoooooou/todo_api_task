@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import springchatapp.demo.model.entity.AddTaskEntityFactory;
 import springchatapp.demo.model.entity.TaskEntity;
-import springchatapp.demo.model.resource.TaskRequestResource;
+import springchatapp.demo.model.resource.AddTaskRequestResource;
 import springchatapp.demo.model.resource.TaskResource;
 import springchatapp.demo.model.resource.TaskResourceFactory;
 import springchatapp.demo.service.TaskService;
@@ -55,9 +56,16 @@ public class TaskController {
    */
   @PostMapping("/todo/tasklist/{uid}")
   public ResponseEntity<?> addTask(@PathVariable String uid,
-                                   @RequestBody TaskRequestResource taskRequestResource) {
+                                   @RequestBody AddTaskRequestResource taskRequestResource) {
 
-    return ResponseEntity.ok("User Info");
+    final var addTaskEntity = AddTaskEntityFactory.create(uid, taskRequestResource);
+    try {
+      taskService.addTask(addTaskEntity);
+    } catch (Exception e) {
+      return ResponseEntity.status(500).body("Task added failed.");
+    }
+
+    return ResponseEntity.ok("Task added successfully.");
   }
 
 }
